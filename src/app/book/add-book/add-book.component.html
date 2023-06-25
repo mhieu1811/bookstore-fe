@@ -1,0 +1,87 @@
+<!-- <section class="mt-4">
+    <h1 class="text-center">CREATE BOOK</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{{ getPicturePath() }}" style="height: 250; width: 200px" />
+            </div>
+            <div class="form-add col-md-9">
+                <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="title"> Title </label>
+                        <input id="title" class="form-control" type="text" formControlName="title"
+                            [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" />
+                        <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                            <div *ngIf="f['title'].errors['required']">Title is required</div>
+                            <div *ngIf="f['title'].errors['maxLength']">
+                                Title max length is 30
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image"> Image </label>
+                        <input id="image" class="form-control" type="file" [(ngModel)]="image" formControlName="image"
+                            [ngClass]="{ 'is-invalid': submitted && f['image'].errors }" />
+                        <div *ngIf="submitted && f['image'].errors" class="invalid-feedback">
+                            <div *ngIf="f['image'].errors['required']">
+                                imageURL is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category"> Category </label>
+                        <select formControlName="category" class="form-control" [value]="'drama'">
+                            <option id="drama" name="'drama" value="drama">Drama</option>
+                            <option id="comedy" name="'comedy" value="comedy">Comedy</option>
+                            <option id="sport" name="sport" value="sport">Sport</option>
+                        </select>
+                        <div *ngIf="submitted && f['category'].errors" class="invalid-feedback">
+                            <div *ngIf="f['category'].errors['required']">
+                                category is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity"> Quantity </label>
+                        <input id="quantity" class="form-control" type="number" formControlName="quantity"
+                            [ngClass]="{ 'is-invalid': submitted && f['quantity'].errors }" />
+                        <div *ngIf="submitted && f['quantity'].errors" class="invalid-feedback">
+                            <div *ngIf="f['quantity'].errors['required']">
+                                quantity is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price"> Price </label>
+                        <input id="price" class="form-control" type="number" formControlName="price"
+                            [ngClass]="{ 'is-invalid': submitted && f['price'].errors }" />
+                        <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                            <div *ngIf="f['price'].errors['required']">price is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description"> Description </label>
+                        <textarea id="description" class="form-control" type="description" formControlName="description"
+                            [ngClass]="{ 'is-invalid': submitted && f['description'].errors }">
+                Enter text here...</textarea>
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors['required']">
+                                description is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mb-3 button-add">
+                        <button mat-raised-button color="accent" [disabled]="!(bookForm.valid && bookForm.dirty)">
+                            Create New
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> -->
