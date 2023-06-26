@@ -4,15 +4,16 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
 } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class RoleGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cookieService: CookieService) { }
 
   canActivate(route: ActivatedRouteSnapshot) {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    if (route.data['roles'] && route.data['roles'] != user.role) {
-      this.router.navigate(['/unauthorized']);
+    const role = this.cookieService.get('role');
+    if (route.data['roles'] && route.data['roles'] != role) {
+      this.router.navigate(['/auth']);
       return false;
     }
     return true;

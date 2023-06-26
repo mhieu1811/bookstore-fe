@@ -15,6 +15,7 @@ const routes: Routes = [
     path: 'manage-books',
     loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
     canActivate: [RoleGuard],
+    data: { roles: 'admin' },
   },
   {
     path: '**',
@@ -27,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
