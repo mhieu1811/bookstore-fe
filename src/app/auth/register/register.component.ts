@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import Register from 'src/app/shared/model/register.model';
-import { UserService } from 'src/app/shared/service/user.service';
+import Register from '../../shared/model/register.model';
+import { ConfirmedValidator } from '../../shared/providers/ConfirmedValidator';
+import { UserService } from '../../shared/service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -25,10 +26,13 @@ export class RegisterComponent implements OnInit {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
       ),
     ]),
-  });
-  constructor(private userService: UserService, public router: Router) {}
 
-  ngOnInit(): void {}
+  }, {
+    validators: [ConfirmedValidator('password', 'confirmPassword')],
+  });
+  constructor(private userService: UserService, public router: Router) { }
+
+  ngOnInit(): void { }
 
   onSubmit() {
     if (this.registerForm.invalid) {
@@ -40,7 +44,7 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.get('password')?.value,
     };
     this.userService.register(registerUser).subscribe((res) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/auth']);
     });
 
     console.log(this.registerForm.controls['password'].errors);

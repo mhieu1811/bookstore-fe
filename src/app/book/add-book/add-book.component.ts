@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
   FormGroup,
-  Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import BookDetail from 'src/app/shared/model/book-detail.model';
-import { BookService } from 'src/app/shared/service/book.service';
+import { BookService } from '../../shared/service/book.service';
 
 @Component({
   selector: 'app-add-book',
@@ -22,12 +18,15 @@ export class AddBookComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit(book: any): void {
-    console.log(book);
+    this.bookService.postAddBook(book).subscribe((res) => {
+      console.log(res)
+      this.router.navigate(['/manage-books'])
+    })
   }
   getPicturePath() {
     if (this.image)

@@ -7,11 +7,13 @@ export const environment = {
   book: {
     getBooks: 'api/books',
     getBookDetail: 'api/book',
+    addBook: 'api/book',
+    editBook: 'api/book',
   },
 
   auth: {
     login: 'api/user/login',
-    register: 'api/user',
+    register: 'api/user/register',
   },
 };
 

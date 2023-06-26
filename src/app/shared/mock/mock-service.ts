@@ -13,7 +13,6 @@ export class MockService implements InMemoryDbService {
   }
 
   post(reqInfo: RequestInfo): Observable<any> | undefined {
-    console.log('ref', reqInfo);
     if (reqInfo.collectionName === 'user' && reqInfo.id === 'login') {
       const { email, password } = reqInfo.utils.getJsonBody(reqInfo.req);
 
@@ -44,7 +43,44 @@ export class MockService implements InMemoryDbService {
         return reqInfo.utils.createResponse$(() => response);
       }
     }
+    if (reqInfo.collectionName === 'user' && reqInfo.id === 'register') {
 
+      const response: ResponseOptions = {
+        body: {
+          message: 'success'
+        },
+        status: 200,
+      };
+      console.log(response);
+      return reqInfo.utils.createResponse$(() => response);
+    }
+    if (reqInfo.collectionName === 'book') {
+
+      const response: ResponseOptions = {
+        body: {
+          message: 'success'
+        },
+        status: 200,
+      };
+      console.log(response);
+      return reqInfo.utils.createResponse$(() => response);
+    }
+    return undefined;
+  }
+
+
+  put(reqInfo: RequestInfo): Observable<any> | undefined {
+    if (reqInfo.collectionName === 'book') {
+
+      const response: ResponseOptions = {
+        body: {
+          message: 'success'
+        },
+        status: 200,
+      };
+      console.log(response);
+      return reqInfo.utils.createResponse$(() => response);
+    }
     return undefined;
   }
 }

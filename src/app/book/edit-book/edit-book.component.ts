@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import BookDetail from 'src/app/shared/model/book-detail.model';
-import { BookService } from 'src/app/shared/service/book.service';
+import BookDetail from '../../shared/model/book-detail.model';
+import { BookService } from '../../shared/service/book.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -17,7 +17,7 @@ export class EditBookComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -27,7 +27,10 @@ export class EditBookComponent implements OnInit {
   }
 
   onSubmit(book: any): void {
-    console.log(book);
+    this.bookService.putEditBook(book).subscribe((res) => {
+      console.log(res)
+      this.router.navigate(['/manage-books'])
+    })
   }
   getPicturePath() {
     if (this.image)

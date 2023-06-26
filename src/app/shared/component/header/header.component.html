@@ -1,23 +1,13 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation shadow-sm"
-  id="navbar"
->
+<nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation shadow-sm" id="navbar">
   <div class="container">
     <a class="navbar-brand font-weight-bold" routerLink="/">E-Shop</a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#main-navbar"
-      aria-controls="main-navbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+      aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="main-navbar">
+    <div class="collapse navbar-collapse text-header" id="main-navbar">
       <ul class="d-flex navbar-nav ml-auto mr-auto">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/">Home </a>
@@ -25,26 +15,25 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="/list-books">Book List </a>
         </li>
-        <li class="nav-item active">
+        <li *ngIf="userRole === 'admin'" class="nav-item active">
           <a class="nav-link" routerLink="/manage-books">Manage Book </a>
         </li>
       </ul>
       <ul class="top-menu mb-0 d-none d-lg-block" id="top-menu">
         <li class="list-inline-item">
-          <a routerLink="/list-books" class="search_toggle" id="search-icon"
-            ><i class="tf-ion-android-search"></i
-          ></a>
+          <a routerLink="/list-books" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
         </li>
         <li class="list-inline-item">
-          <div *ngIf="isLogin()">
-            Hi, {{ isLogin().name }}
+          <div *ngIf="userName">
+            Hi, {{ userName }}
             <a routerLink="/" class="ml-3" (click)="logout()"> Logout</a>
           </div>
-          <div *ngIf="!isLogin()">
+          <div *ngIf="!userName">
             <a routerLink="/auth"> Login </a>
           </div>
         </li>
       </ul>
+
     </div>
   </div>
 </nav>

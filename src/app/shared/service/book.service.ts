@@ -5,6 +5,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import type Book from '../model/book.model';
 import type BookDetail from '../model/book-detail.model';
+import successMessage from '../model/success-message.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,14 @@ export class BookService {
 
   getBookDetail(): Observable<BookDetail> {
     return this.httpClient.get<BookDetail>(environment.book.getBookDetail)
+  }
+
+  postAddBook(book: BookDetail): Observable<successMessage> {
+    console.log()
+    return this.httpClient.post<successMessage>(environment.book.addBook, book)
+  }
+
+  putEditBook(book: BookDetail): Observable<successMessage> {
+    return this.httpClient.put<successMessage>(environment.book.editBook, book)
   }
 }

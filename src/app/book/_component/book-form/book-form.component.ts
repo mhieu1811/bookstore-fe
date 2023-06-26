@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import BookDetail from 'src/app/shared/model/book-detail.model';
-import { Category } from 'src/app/shared/model/book.model';
-import { BookService } from 'src/app/shared/service/book.service';
+import BookDetail from '../../../shared/model/book-detail.model';
+import { Category } from '../../../shared/model/book.model';
 
 @Component({
   selector: 'app-book-form',
@@ -21,11 +20,10 @@ export class BookFormComponent implements OnInit {
     quantity: 0,
   };
   @Output() returnBook: EventEmitter<BookDetail> = new EventEmitter();
+
   bookForm: FormGroup = new FormGroup({});
-  isEdit: boolean = false;
   buttonText: string = 'Create New';
   image: string = '';
-  constructor() {}
 
   ngOnInit(): void {
     if (this.book.id !== 0) {

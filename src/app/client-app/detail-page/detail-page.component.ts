@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import BookDetail from '../../shared/model/book-detail.model';
 import { Category } from '../../shared/model/book.model';
-import { BookService } from 'src/app/shared/service/book.service';
+import { BookService } from '../../shared/service/book.service';
 
 @Component({
   selector: 'app-detail-page',
@@ -18,7 +18,7 @@ export class DetailPageComponent implements OnInit {
     description: '',
     image: '',
   };
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.bookService.getBookDetail().subscribe((res) => {

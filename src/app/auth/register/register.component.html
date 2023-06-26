@@ -9,29 +9,14 @@
               Already have an account? <a routerLink="/auth"> Login now</a>
             </p>
           </div>
-          <!-- <p style="color: red">{{ validateMessage }}</p> -->
-
-          <form
-            [formGroup]="registerForm"
-            #form="ngForm"
-            (ngSubmit)="onSubmit()"
-          >
+          <form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="email"> Email </label>
-              <input
-                id="email"
-                class="form-control"
-                type="text"
-                formControlName="email"
-                [ngClass]="{
+              <input id="email" class="form-control" type="text" formControlName="email" [ngClass]="{
                   'is-invalid':
                     registerForm.controls['email'].dirty && form.submitted
-                }"
-              />
-              <div
-                *ngIf="registerForm.controls['email'].errors && form.submitted"
-                class="invalid-feedback"
-              >
+                }" />
+              <div *ngIf="registerForm.controls['email'].errors && form.submitted" class="invalid-feedback">
                 <div *ngIf="registerForm.controls['email'].errors['required']">
                   Email is required
                 </div>
@@ -43,20 +28,11 @@
 
             <div class="form-group">
               <label for="name"> Name </label>
-              <input
-                id="name"
-                class="form-control"
-                type="text"
-                formControlName="name"
-                [ngClass]="{
+              <input id="name" class="form-control" type="text" formControlName="name" [ngClass]="{
                   'is-invalid':
                     form.submitted && registerForm.controls['name'].errors
-                }"
-              />
-              <div
-                *ngIf="form.submitted && registerForm.controls['name'].errors"
-                class="invalid-feedback"
-              >
+                }" />
+              <div *ngIf="form.submitted && registerForm.controls['name'].errors" class="invalid-feedback">
                 <div *ngIf="registerForm.controls['name'].errors['required']">
                   Name is required
                 </div>
@@ -65,35 +41,20 @@
 
             <div class="form-group">
               <label for="password"> Password </label>
-              <input
-                id="password"
-                class="form-control"
-                type="password"
-                formControlName="password"
-                [ngClass]="{
+              <input id="password" class="form-control" type="password" formControlName="password" [ngClass]="{
                   'is-invalid':
                     registerForm.controls['password'].errors && form.submitted
-                }"
-              />
-              <div
-                *ngIf="
+                }" />
+              <div *ngIf="
                   registerForm.controls['password'].errors && form.submitted
-                "
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="registerForm.controls['password'].errors['required']"
-                >
+                " class="invalid-feedback">
+                <div *ngIf="registerForm.controls['password'].errors['required']">
                   Password is required
                 </div>
-                <div
-                  *ngIf="registerForm.controls['password'].errors['minlength']"
-                >
+                <div *ngIf="registerForm.controls['password'].errors['minlength']">
                   Password must be at least 8 characters
                 </div>
-                <div
-                  *ngIf="registerForm.controls['password'].errors['pattern']"
-                >
+                <div *ngIf="registerForm.controls['password'].errors['pattern']">
                   <div>Password must contains</div>
                   <div>- 1 lowercase letter</div>
                   <div>- 1 upper letter</div>
@@ -105,48 +66,32 @@
 
             <div class="form-group">
               <label for="confirmPassword"> Confirm Password </label>
-              <input
-                id="confirmPassword"
-                class="form-control"
-                type="password"
-                formControlName="confirmPassword"
+              <input id="confirmPassword" class="form-control" type="password" formControlName="confirmPassword"
                 [ngClass]="{
                   'is-invalid':
                     registerForm.controls['confirmPassword'].errors &&
                     form.submitted
-                }"
-              />
-              <div
-                *ngIf="
+                }" />
+              <div *ngIf="
                   registerForm.controls['confirmPassword'].errors &&
                   form.submitted
-                "
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="
+                " class="invalid-feedback">
+                <div *ngIf="
                     registerForm.controls['confirmPassword'].errors['required']
-                  "
-                >
+                  ">
                   Confirm Password is required
                 </div>
-                <div
-                  *ngIf="
+                <div *ngIf="
                     registerForm.controls['confirmPassword'].errors[
                       'confirmedValidator'
                     ]
-                  "
-                >
+                  ">
                   Confirm Password does not match
                 </div>
               </div>
             </div>
 
-            <input
-              type="submit"
-              class="btn btn-main mt-3 btn-block"
-              value="Sign Up"
-            />
+            <input type="submit" class="btn btn-main mt-3 btn-block" value="Sign Up" />
           </form>
         </div>
       </div>
