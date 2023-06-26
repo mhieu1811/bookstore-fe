@@ -1,10 +1,11 @@
-const user = {
-  id: 1,
-  username: 'test',
-  email: 'test@test',
-  role: 'admin',
-  permission: ['Book_Watch', 'Book_Modify', 'User_Watch']
-};
+const user = [
+  {
+    id: 1,
+    name: 'admin',
+    email: 'admin@admin',
+    role: 'admin',
+    password: 'Lmh@18112000',
+  },
+];
 
 export default user;
-

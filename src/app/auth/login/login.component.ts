@@ -1,32 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../shared/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      ),
+    ]),
   });
 
-  constructor(
-    // private userService: UserService
-  ) { }
+  constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      // this.userService.login(
-      //   this.loginForm.controls['email'].value,
-      //   this.loginForm.controls['password'].value
-      // );
+    if (this.loginForm.invalid) {
+      return;
     }
-  }
 
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
+    this.userService.login(email, password).subscribe((res) => {
+      console.log(res);
+      this.router.navigate(['/']);
+    });
+
+    console.log(this.loginForm.controls['password'].errors);
+  }
 }

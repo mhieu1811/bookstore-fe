@@ -1,0 +1,35 @@
+<form class="mb-5" (ngSubmit)="onSubmit()">
+  <h3 class="widget-title h4 mb-2">Search</h3>
+
+  <div class="form-group mb-4">
+    <input
+      type="text"
+      name="search"
+      style="background-color: white; border-radius: 3%; width: 90%"
+      class="form-control"
+      [(ngModel)]="searchKey"
+      id="search"
+    />
+  </div>
+
+  <section class="widget mb-5">
+    <h3 class="widget-title h4 mb-4">Category</h3>
+    <div
+      class="custom-control custom-checkbox"
+      *ngFor="let option of optionList; let i = index"
+    >
+      <input
+        type="radio"
+        class="custom-control-input"
+        [value]="option"
+        [(ngModel)]="selectOptions"
+        name="category"
+        id="{{ option }}"
+      />
+      <label class="custom-control-label" for="{{ option }}">
+        {{ option.toUpperCase() }}
+      </label>
+    </div>
+  </section>
+  <button type="submit" mat-raised-button>Filter</button>
+</form>

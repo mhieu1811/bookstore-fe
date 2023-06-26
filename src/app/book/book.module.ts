@@ -6,18 +6,19 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { ListBookComponent } from './list-book/list-book.component';
 import { DetailBookComponent } from './detail-book/detail-book.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BookFormComponent } from './_component/book-form/book-form.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
-  declarations: [
-    AddBookComponent,
-    ListBookComponent,
-    DetailBookComponent
-  ],
+  declarations: [AddBookComponent, ListBookComponent, DetailBookComponent, BookFormComponent, EditBookComponent],
   imports: [
     CommonModule,
     BookRoutingModule,
-    SharedModule
-  ]
+    MatTableModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
-export class BookModule { }
+export class BookModule {}

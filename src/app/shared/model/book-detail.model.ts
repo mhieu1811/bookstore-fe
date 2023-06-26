@@ -5,6 +5,7 @@ export default interface BookDetail {
   title: string;
   price: number;
   category: Category;
-  inStock: number;
+  quantity: number;
   description: string;
+  image: string;
 }

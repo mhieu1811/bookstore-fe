@@ -10,7 +10,7 @@ export const environment = {
   },
 
   auth: {
-    login: 'api/user',
+    login: 'api/user/login',
     register: 'api/user',
   },
 };

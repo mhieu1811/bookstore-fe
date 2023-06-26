@@ -1,0 +1,10 @@
+<section class="mt-4">
+  <h1 class="text-center">EDIT BOOK</h1>
+  <div class="container">
+    <app-book-form
+      *ngIf="book"
+      [book]="book"
+      (returnBook)="onSubmit($event)"
+    ></app-book-form>
+  </div>
+</section>

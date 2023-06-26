@@ -4,26 +4,27 @@ import { RoleGuard } from './core/auth.guard';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '',
-    loadChildren: () => import('./client-app/client-app.module').then(m => m.ClientAppModule),
+    loadChildren: () =>
+      import('./client-app/client-app.module').then((m) => m.ClientAppModule),
   },
   {
-    path: 'books',
-    loadChildren: () => import('./book/book.module').then(m => m.BookModule),
-    canActivate: [RoleGuard]
+    path: 'manage-books',
+    loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
+    canActivate: [RoleGuard],
   },
   {
     path: '**',
     redirectTo: '',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
