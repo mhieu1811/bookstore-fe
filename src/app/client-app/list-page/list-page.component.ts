@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Book from '../../shared/model/book.model';
 import { BookService } from '../../shared/service/book.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-page',
@@ -11,11 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ListPageComponent implements OnInit {
   optionList: string[] = ['all', 'drama', 'comedy', 'sport'];
   books: Book[] = [];
-  searchForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    category: new FormControl('all'),
-  });
-  constructor(private bookService: BookService) {}
+
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.getBooks();

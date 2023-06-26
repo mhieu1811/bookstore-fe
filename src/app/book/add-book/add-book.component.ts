@@ -17,7 +17,6 @@ export class AddBookComponent implements OnInit {
   constructor(
     private router: Router,
     private bookService: BookService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void { }

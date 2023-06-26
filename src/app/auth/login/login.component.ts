@@ -35,6 +35,5 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     });
 
-    console.log(this.loginForm.controls['password'].errors);
   }
 }

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditBookComponent } from './edit-book.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EditBookComponent', () => {
   let component: EditBookComponent;
@@ -8,9 +10,11 @@ describe('EditBookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditBookComponent ]
+      declarations: [EditBookComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule]
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
