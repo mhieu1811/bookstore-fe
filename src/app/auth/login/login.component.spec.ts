@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
-import { UserService } from 'src/app/shared/service/user.service';
+import { UserService } from '../..//shared/service/user.service';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';

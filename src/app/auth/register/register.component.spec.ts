@@ -10,7 +10,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UserService } from 'src/app/shared/service/user.service';
+import { UserService } from '../..//shared/service/user.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 

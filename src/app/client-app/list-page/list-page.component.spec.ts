@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ListPageComponent } from './list-page.component';
-import { BookService } from 'src/app/shared/service/book.service';
+import { BookService } from '../..//shared/service/book.service';
 import { of } from 'rxjs';
-import { Category } from 'src/app/shared/model/book.model';
+import { Category } from '../..//shared/model/book.model';
 
 describe('ListPageComponent', () => {
   let component: ListPageComponent;

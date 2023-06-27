@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Register from '../../shared/model/register.model';
@@ -9,7 +9,7 @@ import { UserService } from '../../shared/service/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -20,11 +20,7 @@ export class RegisterComponent implements OnInit {
       ),
     ]),
   });
-  constructor(private userService: UserService, public router: Router) { }
-
-  ngOnInit(): void {
-
-  }
+  constructor(private userService: UserService, public router: Router) {}
 
   onSubmit() {
     if (this.registerForm.invalid) {

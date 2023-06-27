@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookFormComponent } from './book-form.component';
-import { Category } from 'src/app/shared/model/book.model';
+import { Category } from '../../../shared/model/book.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import BookDetail from 'src/app/shared/model/book-detail.model';
+import BookDetail from '../../../shared/model/book-detail.model';
 
 describe('BookFormComponent', () => {
   let component: BookFormComponent;

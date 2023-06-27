@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import BookDetail from '../../../shared/model/book-detail.model';
 import { Category } from '../../../shared/model/book.model';
 

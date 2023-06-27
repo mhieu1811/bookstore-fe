@@ -5,15 +5,12 @@ import Book from '../../shared/model/book.model';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-
   books: Book[] = [];
 
-  constructor(private bookService: BookService) {
-    console.log("A")
-  }
+  constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
     this.getBooks();
@@ -24,5 +21,4 @@ export class HomePageComponent implements OnInit {
       this.books = books;
     });
   }
-
 }

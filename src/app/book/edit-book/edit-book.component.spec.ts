@@ -4,9 +4,9 @@ import { EditBookComponent } from './edit-book.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { BookService } from 'src/app/shared/service/book.service';
+import { BookService } from '../..//shared/service/book.service';
 import { of } from 'rxjs';
-import { Category } from 'src/app/shared/model/book.model';
+import { Category } from '../..//shared/model/book.model';
 
 describe('EditBookComponent', () => {
   let component: EditBookComponent;
