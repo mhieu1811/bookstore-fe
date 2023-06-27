@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { StorageService } from '../../service/storage.service';
+import { of } from 'rxjs';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,9 +10,24 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      providers: [
+        {
+          provide: StorageService,
+          useValue: {
+            getName: () => {
+              return of('name');
+            },
+            getRole: () => {
+              return of('admin');
+            },
+            getProperty: () => {
+              return of('key');
+            },
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

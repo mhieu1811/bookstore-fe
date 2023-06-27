@@ -12,13 +12,23 @@
           </div>
 
           <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="onSubmit()">
+            <p *ngIf="validatMessage">{{ validatMessage }}</p>
             <div class="form-group">
               <label for="email"> Email </label>
-              <input id="email" class="form-control" type="text" formControlName="email" [ngClass]="{
+              <input
+                id="email"
+                class="form-control"
+                type="text"
+                formControlName="email"
+                [ngClass]="{
                   'is-invalid':
                     loginForm.controls['email'].errors && form.submitted
-                }" />
-              <div *ngIf="loginForm.controls['email'].errors && form.submitted" class="invalid-feedback">
+                }"
+              />
+              <div
+                *ngIf="loginForm.controls['email'].errors && form.submitted"
+                class="invalid-feedback"
+              >
                 <span *ngIf="loginForm.controls['email'].errors['required']">
                   Email is required
                 </span>
@@ -30,11 +40,20 @@
 
             <div class="form-group">
               <label for="password"> Password </label>
-              <input id="password" class="form-control" type="password" formControlName="password" [ngClass]="{
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                formControlName="password"
+                [ngClass]="{
                   'is-invalid':
                     loginForm.controls['password'].errors && form.submitted
-                }" />
-              <div *ngIf="loginForm.controls['password'].errors && form.submitted" class="invalid-feedback">
+                }"
+              />
+              <div
+                *ngIf="loginForm.controls['password'].errors && form.submitted"
+                class="invalid-feedback"
+              >
                 <div *ngIf="loginForm.controls['password'].errors['required']">
                   Password is required
                 </div>

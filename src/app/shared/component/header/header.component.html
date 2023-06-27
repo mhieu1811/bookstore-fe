@@ -1,14 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation shadow-sm" id="navbar">
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation shadow-sm"
+  id="navbar"
+>
   <div class="container">
     <a class="navbar-brand font-weight-bold" routerLink="/">E-Shop</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
-      aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#main-navbar"
+      aria-controls="main-navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse text-header" id="main-navbar">
-      <ul class="d-flex navbar-nav ml-auto mr-auto">
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="d-flex navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/">Home </a>
         </li>
@@ -19,9 +29,11 @@
           <a class="nav-link" routerLink="/manage-books">Manage Book </a>
         </li>
       </ul>
-      <ul class="top-menu mb-0 d-none d-lg-block" id="top-menu">
+      <ul class="top-menu mb-0 float-right ml-auto" id="top-menu">
         <li class="list-inline-item">
-          <a routerLink="/list-books" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
+          <a routerLink="/list-books" class="search_toggle" id="search-icon"
+            ><i class="tf-ion-android-search"></i
+          ></a>
         </li>
         <li class="list-inline-item">
           <div *ngIf="userName">
@@ -33,7 +45,6 @@
           </div>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>

@@ -60,10 +60,4 @@ export class BookFormComponent implements OnInit {
     };
     this.returnBook.emit(bookDetail);
   }
-
-  getPicturePath() {
-    if (this.image)
-      return '../../assets/images/' + this.image.split(/(\\|\/)/g).pop();
-    else return '';
-  }
 }

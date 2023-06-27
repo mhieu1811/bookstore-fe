@@ -12,8 +12,8 @@ export class ListPageComponent implements OnInit {
   optionList: string[] = ['all', 'drama', 'comedy', 'sport'];
   books: Book[] = [];
 
-  constructor(private bookService: BookService) { }
-
+  constructor(private bookService: BookService) {}
+  filter = {};
   ngOnInit(): void {
     this.getBooks();
   }
@@ -24,6 +24,6 @@ export class ListPageComponent implements OnInit {
     });
   }
   onFilter(filter: any) {
-    console.log(filter);
+    this.filter = filter;
   }
 }

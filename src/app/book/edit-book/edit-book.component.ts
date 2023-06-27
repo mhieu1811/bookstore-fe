@@ -17,7 +17,7 @@ export class EditBookComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -28,13 +28,7 @@ export class EditBookComponent implements OnInit {
 
   onSubmit(book: any): void {
     this.bookService.putEditBook(book).subscribe((res) => {
-      console.log(res)
-      this.router.navigate(['/manage-books'])
-    })
-  }
-  getPicturePath() {
-    if (this.image)
-      return '../../assets/images/' + this.image.split(/(\\|\/)/g).pop();
-    else return '';
+      this.router.navigate(['/manage-books']);
+    });
   }
 }
