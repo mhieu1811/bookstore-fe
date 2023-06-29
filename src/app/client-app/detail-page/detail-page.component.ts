@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import BookDetail from '../../shared/model/book-detail.model';
 import { Category } from '../../shared/model/book.model';
 import { BookService } from '../../shared/service/book.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-page',
@@ -10,7 +11,7 @@ import { BookService } from '../../shared/service/book.service';
 })
 export class DetailPageComponent implements OnInit {
   book: BookDetail = {
-    id: 0,
+    _id: '0',
     title: '',
     price: 0,
     category: Category.Comedy,
@@ -18,11 +19,13 @@ export class DetailPageComponent implements OnInit {
     description: '',
     image: '',
   };
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.bookService.getBookDetail().subscribe((res) => {
-      this.book = res;
-    });
+    const bookId = this.router.snapshot.paramMap.get('id')
+    if (bookId)
+      this.bookService.getBookDetail(bookId).subscribe((res) => {
+        this.book = res;
+      });
   }
 }

@@ -12,20 +12,23 @@ export class EditBookComponent implements OnInit {
   isEdit: boolean = false;
   image: string = '';
   book: BookDetail | undefined = undefined;
+  bookId: string | null = ''
   constructor(
     private router: Router,
     private bookService: BookService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.bookService.getBookDetail().subscribe((book) => {
-      this.book = book;
-    });
+    this.bookId = this.route.snapshot.paramMap.get('id');
+    if (this.bookId)
+      this.bookService.getBookDetail(this.bookId).subscribe((book) => {
+        this.book = book;
+      });
   }
 
   onSubmit(book: any): void {
+    book._id = this.bookId
     this.bookService.putEditBook(book).subscribe((res) => {
       this.router.navigate(['/manage-books']);
     });

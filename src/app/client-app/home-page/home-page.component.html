@@ -28,19 +28,11 @@
     </div>
 
     <div class="row">
-      <div
-        class="col-lg-3 col-12 col-md-6 col-sm-6 mb-5"
-        *ngFor="let book of books"
-      >
+      <div class="col-lg-3 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let book of books">
         <div class="product">
           <div class="product-wrap">
-            <a routerLink="/books-detail/{{ book.id }}"
-              ><img
-                class="img-fluid w-100 mb-3 img-first"
-                src="../../assets/images/{{ book.image }}"
-                style="height: 297px; width: 196px"
-                alt="product-img"
-            /></a>
+            <a [routerLink]="['/books', book._id]"><img class="img-fluid w-100 mb-3 img-first" src="{{book.image}}"
+                style="height: 297px; width: 196px" alt="product-img" /></a>
           </div>
 
           <div class="product-hover-overlay">
@@ -49,7 +41,7 @@
 
           <div class="product-info">
             <h2 class="product-title h5 mb-0">
-              <a routerLink="/books-detail/{{ book.id }}">{{ book.title }}</a>
+              <a [routerLink]="['/books', book._id]">{{ book.title }}</a>
             </h2>
             <span class="price">
               {{ book.price | currency : "VND" : "symbol" }}
@@ -58,8 +50,6 @@
         </div>
       </div>
     </div>
-    <a style="float: right; font-size: 20px" routerLink="/books"
-      >See more....</a
-    >
+    <a style="float: right; font-size: 20px" routerLink="/books">See more....</a>
   </div>
 </section>

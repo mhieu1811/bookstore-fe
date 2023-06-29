@@ -1,5 +1,5 @@
 export default interface Book {
-  id: number;
+  _id: string;
   title: string;
   price: number;
   category: Category;
@@ -7,7 +7,7 @@ export default interface Book {
 }
 
 export enum Category {
-  Drama = 'drama',
-  Sport = 'sport',
-  Comedy = 'comedy',
+  Drama = 'Drama',
+  Sport = 'Sport',
+  Comedy = 'Comedy',
 }

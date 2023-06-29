@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import User from '../model/user.model';
 import Register from '../model/register.model';
@@ -13,11 +13,29 @@ import UserRespond from '../model/userRespond.model';
 export class UserService {
   constructor(private httpClient: HttpClient) { }
 
-  login(email: string, password: string): Observable<UserRespond> {
-    return this.httpClient.post<UserRespond>(environment.auth.login, {
-      email: email,
-      password: password,
-    });
+  login(email: string, password: string): Observable<any> {
+    // return this.httpClient.post<UserRespond>(environment.auth.login, {
+    //   email: email,
+    //   password: password,
+    // });
+
+    if (email === 'admin@admin') {
+      return of({
+        userId: 1,
+        token: 'token_ne`',
+        expireAt: '86400',
+        name: 'Admin',
+        role: 'admin',
+      })
+    } else {
+      return of({
+        userId: 1,
+        token: 'token_ne`',
+        expireAt: '86400',
+        name: 'Customer',
+        role: 'customer',
+      })
+    }
   }
 
   register(register: Register): Observable<User> {

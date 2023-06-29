@@ -12,10 +12,12 @@ export class AddBookComponent {
   bookForm: FormGroup = new FormGroup({});
   isEdit: boolean = false;
   image: string = '';
-  constructor(private router: Router, private bookService: BookService) {}
+  constructor(private router: Router, private bookService: BookService) { }
 
   onSubmit(book: any): void {
+    console.log(book)
     this.bookService.postAddBook(book).subscribe((res) => {
+      console.log(res)
       this.router.navigate(['/manage-books']);
     });
   }

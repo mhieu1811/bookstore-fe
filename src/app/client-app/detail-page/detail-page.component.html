@@ -28,11 +28,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="single-product-slider">
-          <img
-            src="../../assets/images/{{ book.image }}"
-            alt=""
-            class="img-fluid"
-          />
+          <img src="{{ book.image }}" alt="" class="img-fluid" />
         </div>
       </div>
 
@@ -48,20 +44,16 @@
           <p class="product-description my-4">
             {{ book.description }}
           </p>
-          <button mat-button>Add to cart</button>
+          <button mat-raised-button color="warn">Add to cart</button>
 
           <div class="products-meta mt-4 mb-4">
             <div class="product-category d-flex align-items-center">
-              <span class="font-weight-bold text-capitalize product-meta-title"
-                >Categories :</span
-              >
+              <span class="font-weight-bold text-capitalize product-meta-title">Categories :</span>
               <span>{{ book.category.toUpperCase() }} </span>
             </div>
 
             <div class="product-category d-flex align-items-center">
-              <span class="font-weight-bold text-capitalize product-meta-title"
-                >In Stock :</span
-              >
+              <span class="font-weight-bold text-capitalize product-meta-title">In Stock :</span>
               <span>{{ book.quantity }} </span>
             </div>
           </div>

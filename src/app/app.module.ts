@@ -22,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AuthModule,
     MatFormFieldModule,
     SharedModule,
-    HttpClientInMemoryWebApiModule.forRoot(MockService, { delay: 200 }),
+    // HttpClientInMemoryWebApiModule.forRoot(MockService, { delay: 200 }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -10,7 +10,7 @@ import { Category } from '../../../shared/model/book.model';
 })
 export class BookFormComponent implements OnInit {
   @Input() book: BookDetail = {
-    id: 0,
+    _id: '0',
     title: '',
     image: '',
     description: '',
@@ -25,7 +25,7 @@ export class BookFormComponent implements OnInit {
   image: string = '';
 
   ngOnInit(): void {
-    if (this.book.id !== 0) {
+    if (this.book._id !== '0') {
       this.buttonText = 'Submit ';
     }
     this.image = this.book.image;
@@ -55,7 +55,7 @@ export class BookFormComponent implements OnInit {
       quantity: this.bookForm.get('quantity')?.value,
       image: this.bookForm.get('image')?.value,
       category: this.bookForm.get('category')?.value,
-      id: -1,
+      _id: '-1',
     };
     this.returnBook.emit(bookDetail);
   }

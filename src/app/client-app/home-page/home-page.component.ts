@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../shared/service/book.service';
 import Book from '../../shared/model/book.model';
+import PaginateBook from 'src/app/shared/model/paginateBook.model';
+import Filter from 'src/app/shared/model/filter.model';
 
 @Component({
   selector: 'app-home-page',
@@ -9,16 +11,17 @@ import Book from '../../shared/model/book.model';
 })
 export class HomePageComponent implements OnInit {
   books: Book[] = [];
+  filter: Filter = { page: 1, searchKey: '', selectOptions: 'all' };
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.getBooks();
   }
 
   private async getBooks() {
-    this.bookService.getBook().subscribe((books: Book[]) => {
-      this.books = books;
+    this.bookService.getBook(this.filter).subscribe((res: PaginateBook) => {
+      this.books = res.items;
     });
   }
 }
