@@ -50,7 +50,7 @@ describe('ListPageComponent', () => {
 
     expect(component.books).toEqual([
       {
-        id: 1,
+        _id: '1',
         title: 'test',
         price: 1,
         category: Category.Drama,
@@ -62,6 +62,6 @@ describe('ListPageComponent', () => {
   it('should onFilter work', () => {
     component.onFilter({ searchKey: 'test' });
 
-    expect(component.filter).toEqual({ searchKey: 'test' });
+    expect(component.filter).toEqual({ searchKey: 'test', selectOptions: 'all', page: 1 });
   });
 });
