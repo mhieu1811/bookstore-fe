@@ -3,13 +3,13 @@ import {
   RequestInfo,
   ResponseOptions,
 } from 'angular-in-memory-web-api';
-import books from './data/book.mock';
-import book from './data/book-detail';
+import book from './data/book.mock';
+import bookDetail from './data/book-detail';
 import user from './data/user.mock';
 import { Observable } from 'rxjs';
 export class MockService implements InMemoryDbService {
   createDb() {
-    return { books, book, user };
+    return { book, bookDetail, user };
   }
 
   post(reqInfo: RequestInfo): Observable<any> | undefined {
@@ -44,10 +44,9 @@ export class MockService implements InMemoryDbService {
       }
     }
     if (reqInfo.collectionName === 'user' && reqInfo.id === 'register') {
-
       const response: ResponseOptions = {
         body: {
-          message: 'success'
+          message: 'success',
         },
         status: 200,
       };
@@ -55,10 +54,9 @@ export class MockService implements InMemoryDbService {
       return reqInfo.utils.createResponse$(() => response);
     }
     if (reqInfo.collectionName === 'book') {
-
       const response: ResponseOptions = {
         body: {
-          message: 'success'
+          message: 'success',
         },
         status: 200,
       };
@@ -68,13 +66,11 @@ export class MockService implements InMemoryDbService {
     return undefined;
   }
 
-
   put(reqInfo: RequestInfo): Observable<any> | undefined {
     if (reqInfo.collectionName === 'book') {
-
       const response: ResponseOptions = {
         body: {
-          message: 'success'
+          message: 'success',
         },
         status: 200,
       };

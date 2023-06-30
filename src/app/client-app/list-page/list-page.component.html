@@ -24,7 +24,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <app-filter [optionName]="'Category'" [optionList]="optionList" (filter)="onFilter($event)"></app-filter>
+        <app-filter
+          [optionName]="'Category'"
+          [optionList]="optionList"
+          (filter)="onFilter($event)"
+        ></app-filter>
       </div>
       <div class="col-md-9">
         <div class="row align-items-center">
@@ -36,11 +40,19 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let book of books">
+          <div
+            class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5"
+            *ngFor="let book of books"
+          >
             <div class="product">
               <div class="product-wrap">
-                <a [routerLink]="['/books', book._id]"><img class="img-fluid w-100 mb-3 img-first" src="{{book.image}}"
-                    style="height: 297px; width: 196px" alt="product-img" /></a>
+                <a [routerLink]="[book._id]"
+                  ><img
+                    class="img-fluid w-100 mb-3 img-first"
+                    src="{{ book.image }}"
+                    style="height: 297px; width: 196px"
+                    alt="product-img"
+                /></a>
               </div>
               <div class="product-hover-overlay">
                 <a><i class="tf-ion-android-cart"></i></a>
@@ -48,7 +60,7 @@
 
               <div class="product-info">
                 <h2 class="product-title h5 mb-0">
-                  <a [routerLink]="['/books', book._id]">{{ book.title }}</a>
+                  <a [routerLink]="[book._id]">{{ book.title }}</a>
                 </h2>
                 <span class="price">
                   {{ book.price | currency : "VND" : "symbol" }}
@@ -59,9 +71,15 @@
 
           <div class="col-12">
             <nav aria-label="Page navigation">
-              <mat-paginator style="margin-right: auto; margin-left: auto"
-                [length]="paginate.totalItem * paginate.totalPage" [pageSize]="12" (page)="loadPage($event)"
-                showFirstLastButtons aria-label="Select page of periodic elements">
+              <mat-paginator
+                style="margin-right: auto; margin-left: auto"
+                [length]="paginate.totalItem"
+                [pageIndex]="paginate.currentPage - 1"
+                [pageSize]="12"
+                (page)="loadPage($event)"
+                showFirstLastButtons
+                aria-label="Select page of periodic elements"
+              >
               </mat-paginator>
             </nav>
           </div>

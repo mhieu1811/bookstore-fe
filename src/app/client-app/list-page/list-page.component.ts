@@ -13,45 +13,56 @@ import { ActivatedRoute } from '@angular/router';
 export class ListPageComponent implements OnInit {
   optionList: string[] = ['all', 'Drama', 'Comedy', 'Sport'];
   filter: Filter = { page: 1, searchKey: '', selectOptions: 'all' };
-  paginate: Paginate = { totalItem: 0, totalPage: 0 }
+  paginate: Paginate = { totalItem: 0, currentPage: 0 };
   books: Book[] = [];
 
-  constructor(private bookService: BookService, private router: ActivatedRoute) { }
+  constructor(
+    private bookService: BookService,
+    private router: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.getBooks();
   }
 
   async getBooks() {
     this.bookService.getBook(this.filter).subscribe((res: PaginateBook) => {
-      this.paginate = { totalItem: res.totalItems, totalPage: res.totalPages }
-      console.log(this.paginate)
+      this.paginate = {
+        totalItem: res.totalItems,
+        currentPage: res.currentPage,
+      };
+      console.log(this.paginate);
+      console.log(res);
       this.books = res.items;
     });
   }
   onFilter(filter: any) {
-    this.filter.searchKey = filter.searchKey
-    this.filter.selectOptions = filter.selectOptions
+    this.filter.searchKey = filter.searchKey;
+    this.filter.selectOptions = filter.selectOptions;
+    this.filter.page = 1;
+
     this.bookService.getBook(this.filter).subscribe((res: PaginateBook) => {
-      this.paginate = { totalItem: res.totalItems, totalPage: res.totalPages }
-      this.filter.page = res.currentPage
+      this.paginate = {
+        totalItem: res.totalItems,
+        currentPage: res.currentPage,
+      };
+      this.filter.page = res.currentPage;
       this.books = res.items;
     });
   }
 
   loadPage(page: any) {
-    this.filter.page = page.pageIndex
-    this.bookService
-      .getBook(this.filter)
-      .subscribe((res: PaginateBook) => {
-        this.paginate = { totalItem: res.totalItems, totalPage: res.totalPages }
-        this.books = res.items;
-      });
+    this.filter.page = page.pageIndex;
+    this.bookService.getBook(this.filter).subscribe((res: PaginateBook) => {
+      this.paginate = {
+        totalItem: res.totalItems,
+        currentPage: res.currentPage,
+      };
+      this.books = res.items;
+    });
   }
-
 }
 
-
 interface Paginate {
-  totalPage: number,
-  totalItem: number
+  currentPage: number;
+  totalItem: number;
 }

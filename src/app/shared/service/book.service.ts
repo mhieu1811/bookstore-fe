@@ -13,34 +13,36 @@ import Filter from '../model/filter.model';
   providedIn: 'root',
 })
 export class BookService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getBook(filter: Filter): Observable<PaginateBook> {
-    let apiUrl = environment.book + "?"
-    if (filter.page > 0)
-      apiUrl += `page=${filter.page}&`
-    if (filter.searchKey)
-      apiUrl += `search=${filter.searchKey}&`
+    let apiUrl = environment.book + '?';
+    if (filter.page > 0) apiUrl += `page=${filter.page}&`;
+    if (filter.searchKey) apiUrl += `search=${filter.searchKey}&`;
     if (filter.selectOptions != 'all')
-      apiUrl += `category=${filter.selectOptions}&`
-    return this.httpClient.get<PaginateBook>(apiUrl)
-
+      apiUrl += `category=${filter.selectOptions}`;
+    return this.httpClient.get<PaginateBook>(apiUrl);
   }
 
   getBookDetail(bookId: string): Observable<BookDetail> {
-    return this.httpClient.get<BookDetail>(`${environment.book}${bookId}`)
+    return this.httpClient.get<BookDetail>(`${environment.book}${bookId}`);
   }
 
   postAddBook(book: BookDetail): Observable<successMessage> {
-    console.log()
-    return this.httpClient.post<successMessage>(environment.book, book)
+    console.log();
+    return this.httpClient.post<successMessage>(environment.book, book);
   }
 
   putEditBook(book: BookDetail): Observable<successMessage> {
-    return this.httpClient.put<successMessage>(`${environment.book}${book._id}`, book)
+    return this.httpClient.put<successMessage>(
+      `${environment.book}${book._id}`,
+      book
+    );
   }
 
   deleteBook(bookId: string): Observable<successMessage> {
-    return this.httpClient.delete<successMessage>(`${environment.book}${bookId}`)
+    return this.httpClient.delete<successMessage>(
+      `${environment.book}${bookId}`
+    );
   }
 }

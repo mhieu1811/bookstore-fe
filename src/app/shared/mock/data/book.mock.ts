@@ -1,4 +1,4 @@
-const books = [
+const book = [
   {
     id: 1,
     title: 'The Catcher in the Rye',
@@ -85,4 +85,4 @@ const books = [
   },
 ];
 
-export default books;
+export default book;
