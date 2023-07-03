@@ -12,12 +12,12 @@ export class EditBookComponent implements OnInit {
   isEdit: boolean = false;
   image: string = '';
   book: BookDetail | undefined = undefined;
-  bookId: string | null = ''
+  bookId: string | null = '';
   constructor(
     private router: Router,
     private bookService: BookService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.bookId = this.route.snapshot.paramMap.get('id');
@@ -25,10 +25,11 @@ export class EditBookComponent implements OnInit {
       this.bookService.getBookDetail(this.bookId).subscribe((book) => {
         this.book = book;
       });
+    else this.router.navigate(['/manage-books']);
   }
 
   onSubmit(book: any): void {
-    book._id = this.bookId
+    book._id = this.bookId;
     this.bookService.putEditBook(book).subscribe((res) => {
       this.router.navigate(['/manage-books']);
     });

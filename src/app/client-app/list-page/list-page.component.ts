@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListPageComponent implements OnInit {
   optionList: string[] = ['all', 'Drama', 'Comedy', 'Sport'];
-  filter: Filter = { page: 1, searchKey: '', selectOptions: 'all' };
+  filter: Filter = { page: 1, searchKey: '', selectOptions: 'all', limit: 12 };
   paginate: Paginate = { totalItem: 0, currentPage: 0 };
   books: Book[] = [];
 
@@ -30,8 +30,6 @@ export class ListPageComponent implements OnInit {
         totalItem: res.totalItems,
         currentPage: res.currentPage,
       };
-      console.log(this.paginate);
-      console.log(res);
       this.books = res.items;
     });
   }
@@ -51,13 +49,18 @@ export class ListPageComponent implements OnInit {
   }
 
   loadPage(page: any) {
-    this.filter.page = page.pageIndex;
+    this.filter.page = page.pageIndex + 1;
     this.bookService.getBook(this.filter).subscribe((res: PaginateBook) => {
       this.paginate = {
         totalItem: res.totalItems,
         currentPage: res.currentPage,
       };
       this.books = res.items;
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
     });
   }
 }

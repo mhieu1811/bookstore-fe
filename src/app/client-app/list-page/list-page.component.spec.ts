@@ -62,6 +62,11 @@ describe('ListPageComponent', () => {
   it('should onFilter work', () => {
     component.onFilter({ searchKey: 'test' });
 
-    expect(component.filter).toEqual({ searchKey: 'test', selectOptions: 'all', page: 1 });
+    expect(component.filter).toEqual({
+      searchKey: 'test',
+      selectOptions: 'all',
+      page: 1,
+      limit: 0,
+    });
   });
 });

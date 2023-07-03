@@ -11,9 +11,9 @@ import Filter from 'src/app/shared/model/filter.model';
 })
 export class HomePageComponent implements OnInit {
   books: Book[] = [];
-  filter: Filter = { page: 1, searchKey: '', selectOptions: 'all' };
+  filter: Filter = { page: 1, searchKey: '', selectOptions: 'all', limit: 12 };
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
     this.getBooks();

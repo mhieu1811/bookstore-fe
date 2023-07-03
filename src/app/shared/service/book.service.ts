@@ -18,6 +18,7 @@ export class BookService {
   getBook(filter: Filter): Observable<PaginateBook> {
     let apiUrl = environment.book + '?';
     if (filter.page > 0) apiUrl += `page=${filter.page}&`;
+    if (filter.limit > 0) apiUrl += `limit=${filter.limit}&`;
     if (filter.searchKey) apiUrl += `search=${filter.searchKey}&`;
     if (filter.selectOptions != 'all')
       apiUrl += `category=${filter.selectOptions}`;

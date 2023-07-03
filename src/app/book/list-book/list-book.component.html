@@ -4,7 +4,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-end mb-3 button-add">
-          <a mat-raised-button routerLink="/manage-books/add" color="warn">Create New</a>
+          <a mat-raised-button routerLink="/manage-books/add" color="warn"
+            >Create New</a
+          >
         </div>
         <table mat-table [dataSource]="books" class="mat-elevation-z8">
           <ng-container matColumnDef="title">
@@ -16,7 +18,10 @@
           <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef>Image</th>
             <td mat-cell *matCellDef="let element">
-              <img src="{{ element.image }}" style="height: 100 px; width: 70px; margin: 20px" />
+              <img
+                src="{{ element.image }}"
+                style="height: 100 px; width: 70px; margin: 20px"
+              />
             </td>
           </ng-container>
 
@@ -36,19 +41,40 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
-              <button [routerLink]="['/books', row._id]" mat-button color="primary">Details</button>
-              <button [routerLink]="['/manage-books/edit/', row._id]" mat-button color="secondary">Edit</button>
-              <button (click)="deleteBook(row._id)" mat-button color="warn">Delete</button>
+              <button
+                [routerLink]="['/books', row._id]"
+                mat-button
+                color="primary"
+              >
+                Details
+              </button>
+              <button
+                [routerLink]="['/manage-books/edit/', row._id]"
+                mat-button
+                color="secondary"
+              >
+                Edit
+              </button>
+              <button (click)="deleteBook(row._id)" mat-button color="warn">
+                Delete
+              </button>
             </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-        <mat-paginator style="margin-right: auto; margin-left: auto" [length]="200" [pageSize]="12" showFirstLastButtons
-          aria-label="Select page of periodic elements">
+        <mat-paginator
+          style="margin-right: auto; margin-left: auto"
+          [length]="paginate.totalItem"
+          [pageIndex]="paginate.currentPage - 1"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 15]"
+          (page)="loadPage($event)"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
         </mat-paginator>
-        <!-- (page)="loadPage($event.pageIndex)" -->
       </div>
     </div>
   </div>
