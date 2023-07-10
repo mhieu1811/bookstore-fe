@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.validatMessage = 'Username or password is incorrect';
         return;
       }
-      this.storageService.saveCookie(res.token, res.name, res.role);
+      // this.storageService.sa(res.token, res.name, res.role);
       this.router.navigate(['/']);
     });
   }

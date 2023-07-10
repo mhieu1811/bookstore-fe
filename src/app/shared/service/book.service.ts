@@ -8,12 +8,16 @@ import type BookDetail from '../model/book-detail.model';
 import successMessage from '../model/success-message.model';
 import PaginateBook from '../model/paginateBook.model';
 import Filter from '../model/filter.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
   getBook(filter: Filter): Observable<PaginateBook> {
     let apiUrl = environment.book + '?';
@@ -30,20 +34,35 @@ export class BookService {
   }
 
   postAddBook(book: BookDetail): Observable<successMessage> {
-    console.log();
-    return this.httpClient.post<successMessage>(environment.book, book);
+    const headers = {
+      Authorization: `Bearer ${this.authService.getAccessToken()}`,
+      'My-Custom-Header': 'foobar',
+    };
+    return this.httpClient.post<successMessage>(environment.book, book, {
+      headers,
+    });
   }
 
   putEditBook(book: BookDetail): Observable<successMessage> {
+    const headers = {
+      Authorization: `Bearer ${this.authService.getAccessToken()}`,
+      'My-Custom-Header': 'foobar',
+    };
     return this.httpClient.put<successMessage>(
       `${environment.book}${book._id}`,
-      book
+      book,
+      { headers }
     );
   }
 
   deleteBook(bookId: string): Observable<successMessage> {
+    const headers = {
+      Authorization: `Bearer ${this.authService.getAccessToken()}`,
+      'My-Custom-Header': 'foobar',
+    };
     return this.httpClient.delete<successMessage>(
-      `${environment.book}${bookId}`
+      `${environment.book}${bookId}`,
+      { headers }
     );
   }
 }

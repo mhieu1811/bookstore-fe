@@ -11,31 +11,13 @@ import UserRespond from '../model/userRespond.model';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    // return this.httpClient.post<UserRespond>(environment.auth.login, {
-    //   email: email,
-    //   password: password,
-    // });
-
-    if (email === 'admin@admin') {
-      return of({
-        userId: 1,
-        token: 'token_ne`',
-        expireAt: '86400',
-        name: 'Admin',
-        role: 'admin',
-      })
-    } else {
-      return of({
-        userId: 1,
-        token: 'token_ne`',
-        expireAt: '86400',
-        name: 'Customer',
-        role: 'customer',
-      })
-    }
+    return this.httpClient.post<UserRespond>(environment.auth.login, {
+      email: email,
+      password: password,
+    });
   }
 
   register(register: Register): Observable<User> {

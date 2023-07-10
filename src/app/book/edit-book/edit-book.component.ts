@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import BookDetail from '../../shared/model/book-detail.model';
 import { BookService } from '../../shared/service/book.service';
+import { of, switchMap, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-edit-book',
@@ -26,6 +27,20 @@ export class EditBookComponent implements OnInit {
         this.book = book;
       });
     else this.router.navigate(['/manage-books']);
+    // this.route.paramMap
+    //   .pipe(
+    //     switchMap((params) => {
+    //       this.bookId = params.get('id');
+    //       if (this.bookId) return this.bookService.getBookDetail(this.bookId);
+    //       else return throwError('A');
+    //     })
+    //   )
+    //   .subscribe((res) => {});
+    // if (this.bookId)
+    //   this.bookService.getBookDetail(this.bookId).subscribe((book) => {
+    //     this.book = book;
+    //   });
+    // else this.router.navigate(['/manage-books']);
   }
 
   onSubmit(book: any): void {

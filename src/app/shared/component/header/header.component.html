@@ -23,25 +23,31 @@
           <a class="nav-link" routerLink="/">Home </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/list-books">Book List </a>
+          <a class="nav-link" [routerLink]="['/list-books']">Book List </a>
         </li>
-        <li *ngIf="userRole === 'admin'" class="nav-item active">
-          <a class="nav-link" routerLink="/manage-books">Manage Book </a>
+        <li
+          *ngIf="this.oidcSecurityService.isAuthenticated()"
+          class="nav-item active"
+        >
+          <a class="nav-link" [routerLink]="['/manage-books']">Manage Book </a>
         </li>
       </ul>
       <ul class="top-menu mb-0 float-right ml-auto" id="top-menu">
         <li class="list-inline-item">
-          <a routerLink="/list-books" class="search_toggle" id="search-icon"
+          <a
+            [routerLink]="['/list-books']"
+            class="search_toggle"
+            id="search-icon"
             ><i class="tf-ion-android-search"></i
           ></a>
         </li>
         <li class="list-inline-item">
-          <div *ngIf="userName">
+          <div *ngIf="this.oidcSecurityService.isAuthenticated()">
             Hi, {{ userName }}
-            <a routerLink="/" class="ml-3" (click)="logout()"> Logout</a>
+            <a [routerLink]="['/']" class="ml-3" (click)="logout()"> Logout</a>
           </div>
-          <div *ngIf="!userName">
-            <a routerLink="/auth"> Login </a>
+          <div *ngIf="!this.oidcSecurityService.isAuthenticated()">
+            <a class="ml-3" (click)="login()"> Login</a>
           </div>
         </li>
       </ul>

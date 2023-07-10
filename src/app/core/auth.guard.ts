@@ -3,19 +3,38 @@ import {
   Router,
   CanActivate,
   ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
 } from '@angular/router';
+import {
+  OidcSecurityService,
+  AuthenticatedResult,
+} from 'angular-auth-oidc-client';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable, map, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class RoleGuard implements CanActivate {
-  constructor(private router: Router, private cookieService: CookieService) { }
+  constructor(
+    private oidcSecurityService: OidcSecurityService,
+    private router: Router
+  ) {}
 
-  canActivate(route: ActivatedRouteSnapshot) {
-    const role = this.cookieService.get('role');
-    if (route.data['roles'] && route.data['roles'] != role) {
-      this.router.navigate(['/auth']);
-      return false;
-    }
-    return true;
+  canActivate(): Observable<boolean | UrlTree> {
+    return this.oidcSecurityService.isAuthenticated$.pipe(
+      take(1),
+      map(({ isAuthenticated }) => {
+        // allow navigation if authenticated
+        if (isAuthenticated) {
+          const user = this.oidcSecurityService.getUserData();
+          console.log(user);
+          user.resource_access['angular-2'].roles.includes('admin');
+          return true;
+        }
+
+        // redirect if not authenticated
+        return this.router.parseUrl('/');
+      })
+    );
   }
 }

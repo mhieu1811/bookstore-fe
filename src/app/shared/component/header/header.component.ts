@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { StorageService } from '../../service/storage.service';
+import { AuthService } from '../../service/auth.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +17,26 @@ export class HeaderComponent implements OnInit {
   userName?: string;
   userRole?: string;
 
-  constructor(private storageService: StorageService) {
+  constructor(
+    private storageService: StorageService,
+    private authService: AuthService,
+    public oidcSecurityService: OidcSecurityService
+  ) {}
+
+  ngOnInit(): void {
+    // const { name } = this.oidcSecurityService.getUserData();
+    // this.userName = name;
     this.storageService.getName().subscribe((name) => {
       this.userName = name;
     });
-
-    this.storageService.getRole().subscribe((role) => {
-      this.userRole = role;
-    });
-
-  }
-
-  ngOnInit(): void {
-    this.userName = this.storageService.getProperty('name');
-    this.userRole = this.storageService.getProperty('role');
   }
 
   logout() {
-    this.storageService.clearCookie();
+    this.authService.logout();
+  }
+  login() {
+    this.authService.login();
+    const { name } = this.oidcSecurityService.getUserData();
+    sessionStorage.setItem('name', 'hieu');
   }
 }
