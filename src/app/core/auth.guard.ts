@@ -27,9 +27,8 @@ export class RoleGuard implements CanActivate {
         // allow navigation if authenticated
         if (isAuthenticated) {
           const user = this.oidcSecurityService.getUserData();
-          console.log(user);
-          user.resource_access['angular-2'].roles.includes('admin');
-          return true;
+          const resource = user.resource_access['angular-2'];
+          if (resource && resource.roles.includes('admin')) return true;
         }
 
         // redirect if not authenticated

@@ -20,15 +20,12 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="d-flex navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home </a>
+          <a class="nav-link" [routerLink]="['/']">Home </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/list-books']">Book List </a>
+          <a class="nav-link" [routerLink]="['/books']">Book List </a>
         </li>
-        <li
-          *ngIf="this.oidcSecurityService.isAuthenticated()"
-          class="nav-item active"
-        >
+        <li *ngIf="isAdmin" class="nav-item active">
           <a class="nav-link" [routerLink]="['/manage-books']">Manage Book </a>
         </li>
       </ul>
@@ -42,11 +39,11 @@
           ></a>
         </li>
         <li class="list-inline-item">
-          <div *ngIf="this.oidcSecurityService.isAuthenticated()">
+          <div *ngIf="isLogin">
             Hi, {{ userName }}
             <a [routerLink]="['/']" class="ml-3" (click)="logout()"> Logout</a>
           </div>
-          <div *ngIf="!this.oidcSecurityService.isAuthenticated()">
+          <div *ngIf="!isLogin">
             <a class="ml-3" (click)="login()"> Login</a>
           </div>
         </li>
